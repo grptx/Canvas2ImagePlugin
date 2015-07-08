@@ -110,7 +110,10 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
                 imageFile = new File(folder, "c2i_" + date.toString() + ".jpg");
 
 			FileOutputStream out = new FileOutputStream(imageFile);
-			bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
+			if(filetype.equals("png"))
+			    bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
+			else
+			    bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
 			out.flush();
 			out.close();
 
