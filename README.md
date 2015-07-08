@@ -1,9 +1,7 @@
 ## Fork Note
-============
 This version allow to save the image in jpg format
 
-Usage:
-------
+
 ### Example
 ```html
 <canvas id="myCanvas" width="165px" height="145px"></canvas>
@@ -23,7 +21,7 @@ function onDeviceReady()
         'jpg'
     );
 }
-
+```
 
 Canvas2ImagePlugin
 ============
