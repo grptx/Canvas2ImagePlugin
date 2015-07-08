@@ -1,3 +1,30 @@
+## Fork Note
+============
+This version allow to save the image in jpg format
+
+Usage:
+------
+### Example
+```html
+<canvas id="myCanvas" width="165px" height="145px"></canvas>
+```
+
+```javascript
+function onDeviceReady()
+{
+	window.canvas2ImagePlugin.saveImageDataToLibrary(
+        function(msg){
+            console.log(msg);
+        },
+        function(err){
+            console.log(err);
+        },
+        document.getElementById('myCanvas'),
+        'jpg'
+    );
+}
+
+
 Canvas2ImagePlugin
 ============
 

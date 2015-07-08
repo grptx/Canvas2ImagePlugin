@@ -40,7 +40,11 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			String base64 = data.optString(0);
 			if (base64.equals("")) // isEmpty() requires API level 9
 				callbackContext.error("Missing base64 string");
-			
+
+			String filetype = data.optString(1);
+			if (filetype.equals(""))
+			    callbackContext.error("Missing filetype (png/jpg)");
+
 			// Create the bitmap from the base64 string
 			Log.d("Canvas2ImagePlugin", base64);
 			byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
@@ -50,7 +54,7 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			} else {
 				
 				// Save the image
-				File imageFile = savePhoto(bmp);
+				File imageFile = savePhoto(bmp,filetype);
 				if (imageFile == null)
 					callbackContext.error("Error while saving image");
 				
@@ -66,7 +70,7 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 		}
 	}
 
-	private File savePhoto(Bitmap bmp) {
+	private File savePhoto(Bitmap bmp,filetype) {
 		File retVal = null;
 		
 		try {
@@ -98,8 +102,12 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			} else {
 				folder = Environment.getExternalStorageDirectory();
 			}
-			
-			File imageFile = new File(folder, "c2i_" + date.toString() + ".png");
+
+			File imageFile;
+			if(filetype.equals("png"))
+			    imageFile = new File(folder, "c2i_" + date.toString() + ".png");
+			else
+                imageFile = new File(folder, "c2i_" + date.toString() + ".jpg");
 
 			FileOutputStream out = new FileOutputStream(imageFile);
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
