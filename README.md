@@ -1,6 +1,7 @@
 ## Fork Note
 This version allow to save the image in jpg format
 
+## WORK ONLY ON ANDROID VERSION!
 
 ### Example
 ```html
